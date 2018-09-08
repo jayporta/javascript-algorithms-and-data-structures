@@ -1,0 +1,134 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+#container {
+  flex: 1 1 auto;
+  max-width: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* xml_http photo grid */
+.photo-column {
+  flex: 1 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.photo-column + .photo-column {
+  margin-left: 10px;
+}
+.photo-column .image-container {
+  width: 100%;
+}
+.photo-column .image-container img {
+  width: 100%;
+}
+
+/* tic tac toe */
+#game-grid {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #777777;
+  width: 300px;
+  height: 300px;
+  background: black;
+}
+#game-grid .row {
+  flex: 1 0 auto;
+  display: flex;
+}
+#game-grid .row + .row {
+  border-top: 1px solid #777777;
+}
+#game-grid .square {
+  position: relative;
+  flex: 1 0 auto;
+  background: white;
+  transition: 0.4s;
+  cursor: pointer;
+}
+#game-grid .square + .square {
+  border-left: 1px solid #777777;
+}
+#game-grid .square.empty:hover {
+  opacity: 0.9;
+}
+#game-grid .mark {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* nabbed from https://codepen.io/desandro/pen/jEgvpo */
+#game-grid .mark svg {
+  width: 100%;
+}
+#game-grid .mark .x,
+#game-grid .mark .o {
+  stroke: black;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+/* autocomplete */
+#autocomplete-container {
+  position: relative;
+  width: 500px;
+  height: 20px;
+  margin: 60px auto;
+}
+#active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: transparent;
+}
+#autocomplete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 0;
+}
+@media screen and (max-width: 600px) {
+  #container {
+    flex-direction: column
+  }
+  .photo-column {
+    width: 100%;
+    margin-left: 0;
+  }
+  .photo-column + .photo-column {
+    margin-top: 10px;
+  }
+}
