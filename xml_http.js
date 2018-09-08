@@ -1,3 +1,5 @@
+// This isn't a data structure but you should still know it if you're a front end
+// developer (and obviously if you're interviewing soon!)
 (async () => {
     const xhr = new XMLHttpRequest();
     try {

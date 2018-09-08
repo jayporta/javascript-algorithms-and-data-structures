@@ -19,7 +19,6 @@ body {
   align-items: center;
   padding: 20px;
 }
-
 /* xml_http photo grid */
 .photo-column {
   flex: 1 0 auto;
@@ -43,7 +42,6 @@ body {
 .photo-column .image-container img {
   width: 100%;
 }
-
 /* tic tac toe */
 #game-grid {
   display: flex;
@@ -94,7 +92,6 @@ body {
   stroke-linecap: round;
   stroke-width: 4;
 }
-
 /* autocomplete */
 #autocomplete-container {
   position: relative;

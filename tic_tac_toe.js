@@ -14,19 +14,29 @@ const o = (
 );
 const squares = document.querySelectorAll('.square');
 const filledSquares = [];
-const xMoves = [];
-const oMoves = [];
+const moves = { x: [], o: [] };
+// This graph represents winning connections
+// There is a more elegant way but I haven't figured it out yet
+// I do this on weekends in 5-minute sittings between personal time, chores, dad stuff, etc.
+const winningGraph = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 4, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
 function handleSquareClick(square) {
     if (square.classList.contains('empty')) {
         filledSquares.push(square.dataset.id);
-        xMoves.push([
-          Number(square.parentElement.dataset.rowindex),
-          Number(square.dataset.index)
-        ]);
+        moves.x.push(Number(square.dataset.id));
         square.classList.remove('empty');
         square.innerHTML = x;
-        if (!checkForWinner('x')) makeAImove();
+        checkForWinner('x');
+        makeAImove();
     }
 }
 
@@ -39,10 +49,7 @@ function makeAImove() {
         const squareForAI = document.querySelector(`[data-id~="${random}"`);
         if (squareForAI.classList.contains('empty')) {
           filledSquares.push(random);
-          oMoves.push([
-            Number(squareForAI.parentElement.dataset.rowindex),
-            Number(squareForAI.dataset.index)
-          ]);
+          moves.o.push(Number(random));
           squareForAI.classList.remove('empty');
           squareForAI.innerHTML = o;
           checkForWinner('o');
@@ -62,22 +69,20 @@ function createSquares() {
       count++;
   }
 }
-
-// This graph represents winning connections
-const winningGraph = [
-  [1, 3, 4], // square 0
-  [0, 2, 4], // square 1
-  [1, 4, 5], // square 2
-  [0, 4, 6], // square 3
-  [0, 1, 2, 3, 5, 6, 8], // square 4 (middle)
-  [2, 4, 8], // square 5
-  [3, 4, 7], // square 6
-  [6, 4, 8], // square 7
-  [4, 5, 7], // square 8
-];
+const filled = {};
 
 function checkForWinner(player) {
-  return false
+  let result = false;
+  // This is bad. TODO: Not have three for loops
+  for (let i = 0; i < moves[player].length; i++) {
+    for (let j = 0; j < winningGraph.length; j++) {
+      for (let k = 0; k < winningGraph[j].length; k++) {
+        if (moves[player][i] === winningGraph[j][k]) result = true;
+        else result = false;
+      }
+    }
+  }
+  if (result) alert(`Winner is ${player}`);
 }
 
 createSquares();

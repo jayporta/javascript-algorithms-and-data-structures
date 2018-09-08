@@ -8,8 +8,8 @@ function getStuff() {
 }
 
 getStuff().then(result => {
-  if (result) console.log('promise ', result);
-  else throw new Error(result);
+  // if (result) console.log('promise ', result);
+  // else throw new Error(result);
 }).catch(error => console.log(error));
 
 async function asyncVersion() {
@@ -22,4 +22,4 @@ async function asyncVersion() {
   }
 }
 
-asyncVersion();
+// asyncVersion();

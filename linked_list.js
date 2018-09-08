@@ -49,9 +49,7 @@
       find(x) {
         let current = this.head;
         if (!current) return;
-        if (current.value === x) {
-          return true
-        }
+        if (current.value === x) return true;
         while (current.next) {
           if (current.next.value === x) return current.next.value;
           current = current.next;

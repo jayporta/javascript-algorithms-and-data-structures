@@ -41,16 +41,6 @@
         }
       }
 
-      find(x) {
-        let current = this.root;
-        while (current) {
-          if (x === current.value) return current.value;
-          if (x < current.value) current = current.left;
-          if (x > current.value) current = current.right;
-        }
-        return false;
-      }
-
       inOrder() {
         if (!this.root) return;
         const result = [];
@@ -87,7 +77,7 @@
         return result;
       }
 
-      bfs(x) {
+      breadthFirstSearch(x) {
         const queue = [];
         queue.push(this.root);
         while (queue.length) {
@@ -102,7 +92,7 @@
         return false;
       }
 
-      dfs(x) {
+      depthFirstSearch(x) {
         const stack = [];
         stack.push(this.root);
         while (stack.length) {

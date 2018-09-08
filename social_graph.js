@@ -1,7 +1,6 @@
 (() => {
     class Node {
       constructor() {
-        // Every node has connections
         this.connections = [];
       }
     }
