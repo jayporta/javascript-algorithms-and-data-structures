@@ -42,7 +42,6 @@ function handleSquareClick(square) {
 
 function makeAImove() {
     let random = Math.floor(Math.random() * squares.length).toString();
-
     if (filledSquares.includes(random) && filledSquares.length < squares.length ) {
         return makeAImove();
     } else {
@@ -60,7 +59,6 @@ function makeAImove() {
 // Create squares
 function createSquares() {
   let count = 0;
-
   for (let i = 0; i < squares.length; i++) {
       squares[i].setAttribute('data-id', i);
       if (i % 3 === 0) count = 0;
@@ -69,20 +67,19 @@ function createSquares() {
       count++;
   }
 }
-const filled = {};
 
+let winnerFound = null;
 function checkForWinner(player) {
-  let result = false;
-  // This is bad. TODO: Not have three for loops
-  for (let i = 0; i < moves[player].length; i++) {
-    for (let j = 0; j < winningGraph.length; j++) {
-      for (let k = 0; k < winningGraph[j].length; k++) {
-        if (moves[player][i] === winningGraph[j][k]) result = true;
-        else result = false;
+  if (!winnerFound) {
+    // TODO: Improve UI so the winning move is rendered
+    // before the alert (actually just ditch the alert and do some cool CSS)
+    for (let i = 0; i < winningGraph.length; i++) {
+      if (winningGraph[i].every(x => moves[player].includes(x))) {
+        winnerFound = true;
+        window.alert(`Winner is ${player}`);
       }
     }
   }
-  if (result) alert(`Winner is ${player}`);
 }
 
 createSquares();
