@@ -4,7 +4,7 @@
     const xhr = new XMLHttpRequest();
     try {
       await xhr.open('GET', 'https://reqres.in/api/users?page=1');
-      xhr.onload =()=> {
+      xhr.onload = () => {
         const response = JSON.parse(xhr.responseText).data;
         if (response ) {
           document.getElementById('container').innerHTML = response.map(person =>
@@ -14,7 +14,7 @@
         console.log('Who are these people?');
       }
       xhr.send();
-    } catch(err) {
+    } catch (err) {
       console.log('XMLHttpRequest error ${err}');
     }
   })();
