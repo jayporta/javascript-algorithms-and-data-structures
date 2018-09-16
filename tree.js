@@ -41,6 +41,31 @@
         }
       }
 
+      remove(x) {
+        // via
+        // https://codepen.io/beaucarnes/pen/ryKvEQ?editors=0012
+        const removeNode = (node, toRemove) => {
+          if (!node) return null;
+          if (node.value === toRemove) {
+            if (!node.left && !node.right) return null;
+            if (!node.left) return node.right;
+            if (!node.right) return node.left;
+            let temp = node.right;
+            while (temo.left) temp = temp.left;
+            node.value = temp.value;
+            node.right = removeNode(node.right, temp.value);
+            return node;
+          } else if (node.value > toRemove) {
+            node.left = removeNode(node.left, toRemove);
+            return node;
+          } else if (node.value < toRemove) {
+            node.right = removeNode(node.right, toRemove);
+            return node;
+          }
+        };
+        this.root = removeNode(this.root, x);
+      }
+
       inOrder() {
         if (!this.root) return;
         const result = [];
@@ -103,31 +128,6 @@
           if (current.right) stack.unshift(current.right);
         }
         return false;
-      }
-
-      remove(x) {
-        // via
-        // https://codepen.io/beaucarnes/pen/ryKvEQ?editors=0012
-        const removeNode = (node, toRemove) => {
-          if (!node) return null;
-          if (node.value === toRemove) {
-            if (!node.left && !node.right) return null;
-            if (!node.left) return node.right;
-            if (!node.right) return node.left;
-            let temp = node.right;
-            while (temo.left) temp = temp.left;
-            node.value = temp.value;
-            node.right = removeNode(node.right, temp.value);
-            return node;
-          } else if (node.value > toRemove) {
-            node.left = removeNode(node.left, toRemove);
-            return node;
-          } else if (node.value < toRemove) {
-            node.right = removeNode(node.right, toRemove);
-            return node;
-          }
-        };
-        this.root = removeNode(this.root, x);
       }
     };
 
