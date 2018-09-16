@@ -51,7 +51,7 @@
             if (!node.left) return node.right;
             if (!node.right) return node.left;
             let temp = node.right;
-            while (temo.left) temp = temp.left;
+            while (temp.left) temp = temp.left;
             node.value = temp.value;
             node.right = removeNode(node.right, temp.value);
             return node;
