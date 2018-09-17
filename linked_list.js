@@ -70,9 +70,4 @@
     };
 
     const list = new LinkedList();
-    list.add(1)
-    list.add(2)
-    list.add(3)
-    list.reverse();
-    console.log(JSON.stringify(list, null, 2));
   })();
