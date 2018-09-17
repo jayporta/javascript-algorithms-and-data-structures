@@ -50,7 +50,7 @@
             if (!node.left && !node.right) return null;
             if (!node.left) return node.right;
             if (!node.right) return node.left;
-            let temp = node.right;
+            const temp = node.right;
             while (temp.left) temp = temp.left;
             node.value = temp.value;
             node.right = removeNode(node.right, temp.value);
@@ -107,7 +107,7 @@
         queue.push(this.root);
         while (queue.length) {
           for (let i = 0; i < queue.length; i++) {
-            let current = queue.shift();
+            const current = queue.shift();
             console.log(current.value);
             if (current.value === x) return current;
             if (current.left) queue.push(current.left);
@@ -121,7 +121,7 @@
         const stack = [];
         stack.push(this.root);
         while (stack.length) {
-          let current = stack.shift();
+          const current = stack.shift();
           console.log(current.value);
           if (current.value === x) return current;
           if (current.left) stack.unshift(current.left);
@@ -132,4 +132,13 @@
     };
 
     const tree = new BinaryTree();
+    tree.add(2);
+    tree.add(4);
+    tree.add(6);
+    tree.add(8);
+    tree.add(10);
+    tree.add(12);
+    tree.add(32);
+    tree.add(23);
+    tree.remove(8);
   })();

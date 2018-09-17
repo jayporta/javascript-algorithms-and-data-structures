@@ -20,9 +20,7 @@
           this.length++;
           return;
         }
-        while (current.next) {
-          current = current.next;
-        }
+        while (current.next) current = current.next;
         current.next = node;
         this.length++;
       }
@@ -60,15 +58,21 @@
       reverse() {
         let current = this.head;
         let previous = null;
+        if (!current) return;
         while (current) {
-          let temp = current.next;
+          const temp = current.next;
           current.next = previous;
           previous = current;
           current = temp;
         }
-        return previous;
+        this.head = previous;
       }
     };
 
     const list = new LinkedList();
+    list.add(1)
+    list.add(2)
+    list.add(3)
+    list.reverse();
+    console.log(JSON.stringify(list, null, 2));
   })();
