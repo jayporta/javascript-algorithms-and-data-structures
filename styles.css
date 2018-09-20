@@ -1,45 +1,30 @@
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin: 0;
 }
-#container {
-  flex: 1 1 auto;
-  max-width: 900px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 20px;
+/* photos */
+#banner {
+  background: black;
+  font-size: 1em;
+  color: white;
+  padding: 5px 10px;
 }
-/* xml_http photo grid */
-.photo-column {
-  flex: 1 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.photo-column + .photo-column {
-  margin-left: 10px;
-}
-.photo-column .image-container {
+#gallery-container {
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
-.photo-column .image-container img {
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+#gallery .image-container {
+  position: relative;
+  flex: 1;
+}
+#gallery .image-container + .image-container {
+  margin-left: 0.5%;
+}
+#gallery .image-container img {
   width: 100%;
 }
 /* tic tac toe */
@@ -50,9 +35,10 @@ body {
   width: 300px;
   height: 300px;
   background: black;
+  margin: 50px auto;
 }
 #game-grid .row {
-  flex: 1 0 auto;
+  flex: 1;
   display: flex;
 }
 #game-grid .row + .row {
@@ -60,7 +46,7 @@ body {
 }
 #game-grid .square {
   position: relative;
-  flex: 1 0 auto;
+  flex: 1;
   background: white;
   transition: 0.4s;
   cursor: pointer;
@@ -92,40 +78,23 @@ body {
   stroke-linecap: round;
   stroke-width: 4;
 }
-/* autocomplete */
-#autocomplete-container {
-  position: relative;
-  width: 500px;
-  height: 20px;
-  margin: 60px auto;
-}
-#active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background: transparent;
-}
-#autocomplete {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: 0;
-}
 @media screen and (max-width: 600px) {
-  #container {
+  #banner {
+    padding: 20px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  #gallery {
     flex-direction: column
   }
-  .photo-column {
-    width: 100%;
-    margin-left: 0;
+  #gallery .image-container {
+    text-align: center;
   }
-  .photo-column + .photo-column {
-    margin-top: 10px;
+  #gallery .image-container + .image-container {
+    margin-left: 0px;
+  }
+  #gallery .image-container img {
+    width: auto;
+    height: 100%;
   }
 }

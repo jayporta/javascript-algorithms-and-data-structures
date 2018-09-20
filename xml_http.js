@@ -1,20 +1,17 @@
-// This isn't a data structure but you should still know it if you're a front end
-// developer (and obviously if you're interviewing soon!)
-(async () => {
-    const xhr = new XMLHttpRequest();
-    try {
-      await xhr.open('GET', 'https://reqres.in/api/users?page=1');
-      xhr.onload = () => {
-        const response = JSON.parse(xhr.responseText).data;
-        if (response ) {
-          document.getElementById('container').innerHTML = response.map(person =>
-            `<div class="photo-column"><div>${person.first_name} ${person.last_name}</div>`+
-            `<div class="image-container"><img src="${person.avatar}" /></div></div>` ).join('');
-        }
-        console.log('Who are these people?');
-      }
-      xhr.send();
-    } catch (err) {
-      console.log('XMLHttpRequest error ${err}');
-    }
-  })();
+function fetchPics() {
+  const url = 'https://picsum.photos/list';
+  const init = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json'},
+    mode: 'cors'
+  };
+  const request = new Request(url, init);
+  fetch(request).then((response) => {
+    if (!response) throw new Error(response);
+    return response.json();
+  }).then((json) => {
+    console.log(json);
+  }).catch(error => console.warn(`Error fetching pics ${error}`));
+}
+
+fetchPics();

@@ -132,13 +132,4 @@
     };
 
     const tree = new BinaryTree();
-    tree.add(2);
-    tree.add(4);
-    tree.add(6);
-    tree.add(8);
-    tree.add(10);
-    tree.add(12);
-    tree.add(32);
-    tree.add(23);
-    tree.remove(8);
   })();
