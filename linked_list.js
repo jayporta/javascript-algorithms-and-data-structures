@@ -33,7 +33,7 @@
           this.length--;
           return;
         }
-        while (current) {
+        while (current.next) {
           if (current.next.value === x) {
             current.next = current.next.next;
             this.length--;
@@ -70,4 +70,10 @@
     };
 
     const list = new LinkedList();
+    list.add(1);
+    list.add(2);
+    list.add('nope');
+    list.add('cow');
+    list.remove('nope');
+    console.log(JSON.stringify(list, null, 2));
   })();
