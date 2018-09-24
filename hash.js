@@ -14,27 +14,13 @@
     }
 
     add(key, value) {
-      const index = createHash(key, this.limit);
-      if (!this.storage[index]) {
-        this.storage[index] = [[key, value]];
-        return;
-      }
-      for (let i = 0; i < this.storage[index].length; i++) {
-        if (this.storage[index][i][0] === key) {
-          this.storage[index][i][1] = value;
-          return;
-        }
-      }
-    }
-
-    add(key, value) {
       // Create index from hash
       const index = createHash(key, this.limit);
       // If the index doesn't exist in storage
       // create an array containing the key, value
       if (!this.storage[index]) {
-        this.storage[index] = [ [key, value] ];
-        return;
+        this.storage[index] = [[key, value]];
+        return `Added ${key}, ${value}`;
       }
       // Otherwise, loop through the item at the hashed index
       for (let i = 0; i < this.storage[index].length; i++) {
@@ -42,8 +28,9 @@
         // matches the key inputted, it's the same key being overwritten with
         // new data
         if (this.storage[index][i][0] === key) {
+          const replaced = this.storage[index][i][1];
           this.storage[index][i][1] = value;
-          return;
+          return `Replaced ${key} ${replaced} with ${key} ${value}`;
         }
       }
       // If we've reached this point, there was a collision
@@ -54,12 +41,14 @@
     remove(key) {
       const index = createHash(key, this.limit);
       // If it doesn't exist, return
-      if (!this.storage[index]) return;
+      if (!this.storage[index]) return `${key} doesn't exist`;
       for (let i = 0; i < this.storage[index].length; i++) {
         // Loop through the indexed item in storage,
         // if one of the sub array's keys matches, delete it
         if (this.storage[index][i][0] === key) {
+          const removed = this.storage[index][i][1];
           this.storage[index].splice(i, 1);
+          return `Removed ${key} ${removed}`;
         }
       }
     }
@@ -67,13 +56,13 @@
     find(key) {
       const index = createHash(key, this.limit);
       let result;
-      if (!this.storage[index]) return;
+      if (!this.storage[index]) return `${key} doesn't exist`;
       for (let i = 0; i < this.storage[index].length; i++) {
         if (this.storage[index][i][0] === key) {
           result = this.storage[index][i][1];
         }
       }
-      return result;
+      return `Found ${key} ${result}`;
     }
   };
 

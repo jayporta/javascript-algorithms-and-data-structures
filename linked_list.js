@@ -18,7 +18,7 @@
         if (!current) {
           this.head = node;
           this.length++;
-          return;
+          return `Added ${x}`;
         }
         while (current.next) current = current.next;
         current.next = node;
@@ -27,17 +27,17 @@
 
       remove(x) {
         let current = this.head;
-        if (!current) return;
+        if (!current) return `${x} is not in the list`;
         if (current.value === x) {
           current = current.next;
           this.length--;
-          return;
+          return `Removed ${x}`;
         }
         while (current.next) {
           if (current.next.value === x) {
             current.next = current.next.next;
             this.length--;
-            break;
+            return `Removed ${x}`;
           } else {
             current = current.next;
           }
@@ -46,34 +46,27 @@
 
       find(x) {
         let current = this.head;
-        if (!current) return;
-        if (current.value === x) return true;
+        if (!current) return `${x} is not in the list`;
+        if (current.value === x) return `Found ${x}`;
         while (current.next) {
-          if (current.next.value === x) return current.next.value;
+          if (current.next.value === x) return `Found ${x}`;
           current = current.next;
         }
-        return;
       }
 
       reverse() {
         let current = this.head;
         let previous = null;
-        if (!current) return;
+        if (!current) return `${x} is not in the list`;
         while (current) {
           const temp = current.next;
           current.next = previous;
           previous = current;
           current = temp;
         }
-        this.head = previous;
+        this.head = previous
       }
     };
 
     const list = new LinkedList();
-    list.add(1);
-    list.add(2);
-    list.add('nope');
-    list.add('cow');
-    list.remove('nope');
-    console.log(JSON.stringify(list, null, 2));
   })();

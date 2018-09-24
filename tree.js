@@ -18,7 +18,7 @@
         // If there's no root, assign the new node to the root
         if (!current) {
           this.root = node;
-          return;
+          return `Added ${x}`;
         }
         while (current) {
           if (x < current.value) {
@@ -67,7 +67,7 @@
       }
 
       inOrder() {
-        if (!this.root) return;
+        if (!this.root) return false;
         const result = [];
         const traverseInOrder = (node) => {
           if (node.left) traverseInOrder(node.left);
@@ -79,7 +79,7 @@
       }
 
       preOrder() {
-        if (!this.root) return;
+        if (!this.root) return false;
         const result = [];
         const traversePreOrder = (node) => {
           result.push(node.value); // PRE push before
@@ -91,7 +91,7 @@
       }
 
       postOrder() {
-        if (!this.root) return;
+        if (!this.root) return false;
         const result = [];
         const traversePostOrder = (node) => {
           if (node.left) traversePostOrder(node.left);
@@ -106,15 +106,13 @@
         const queue = [];
         queue.push(this.root);
         while (queue.length) {
-          for (let i = 0; i < queue.length; i++) {
-            const current = queue.shift();
-            console.log(current.value);
-            if (current.value === x) return current;
-            if (current.left) queue.push(current.left);
-            if (current.right) queue.push(current.right);
-          }
+          const current = queue.shift();
+          console.log(current.value)
+          if (current.value === x) return `Found ${x}`;
+          if (current.left) queue.push(current.left);
+          if (current.right) queue.push(current.right);
         }
-        return false;
+        return `${x} not found in binary tree. Bummer, dude.`;
       }
 
       depthFirstSearch(x) {
@@ -123,11 +121,11 @@
         while (stack.length) {
           const current = stack.shift();
           console.log(current.value);
-          if (current.value === x) return current;
+          if (current.value === x) return `Found ${x}`;
           if (current.left) stack.unshift(current.left);
           if (current.right) stack.unshift(current.right);
         }
-        return false;
+        return `${x} not found in tree`
       }
     };
 

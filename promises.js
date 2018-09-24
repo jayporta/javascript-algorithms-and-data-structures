@@ -15,10 +15,10 @@ getStuff().then(result => {
 async function asyncVersion() {
   try {
     const result = await getStuff();
-    console.log('async ', result);
     if (!result) throw new Error(result);
+    console.log(`async ${result}`);
   } catch (error) {
-    console.log(error);
+    console.log(`error ${error}`);
   }
 }
 
