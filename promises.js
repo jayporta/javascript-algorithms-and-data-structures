@@ -8,6 +8,7 @@ function getStuff() {
 }
 
 getStuff().then(result => {
+  // Uncomment for output
   // if (result) console.log('promise ', result);
   // else throw new Error(result);
 }).catch(error => console.log(error));
