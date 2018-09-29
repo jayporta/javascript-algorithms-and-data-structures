@@ -18,6 +18,8 @@ function xmlRequestThing(args) {
   const xhr = new XMLHttpRequest();
   return new Promise((resolve, reject) => {
     xhr.open(method, url);
+    // Headers can be received as an object containing all headers
+    // here we can iterate through them and set them with setRequestHeader()
     if (headers) {
       const keys = Object.keys(headers);
       for (let i = 0; i < keys.length; i++) {
