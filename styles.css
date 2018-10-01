@@ -7,10 +7,8 @@ body {
   font-size: 1em;
   color: white;
   padding: 5px 10px;
-}
-#gallery-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 #gallery {
@@ -19,6 +17,9 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 #gallery .image-container {
   position: relative;
